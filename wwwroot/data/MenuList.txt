@@ -1,0 +1,60 @@
+PI001,pizza,Spicy Pepperoni Pizza,12 inches,12
+PI002,pizza,BBQ Chicken Pizza,14 inches,15
+PI003,pizza,Hawaiian Pizza,10 inches,10
+PI004,pizza,Margherita Pizza,16 inches,18
+PI005,pizza,Vegetarian Supreme Pizza,12 inches,14
+PI006,pizza,Meat Lover's Pizza,14 inches,16
+PI007,pizza,Greek Pizza,10 inches,11
+PI008,pizza,White Pizza,16 inches,20
+PI009,pizza,Pesto Chicken Pizza,12 inches,13
+PI010,pizza,Sausage and Mushroom Pizza,14 inches,15
+PI011,pizza,Buffalo Chicken Pizza,12 inches,13
+PI012,pizza,Four Cheese Pizza,14 inches,16
+PI013,pizza,Supreme Pizza,16 inches,18
+PI014,pizza,BBQ Bacon Pizza,12 inches,14
+PI015,pizza,Mediterranean Pizza,14 inches,17
+PI016,pizza,Philly Cheesesteak Pizza,12 inches,14
+PI017,pizza,Capricciosa Pizza,16 inches,19
+PI018,pizza,Shrimp Scampi Pizza,12 inches,15
+PI019,pizza,Taco Pizza,14 inches,16
+PI020,pizza,Spinach and Feta Pizza,16 inches,18
+BU021,burger,Classic Cheeseburger,Single,8
+BU022,burger,Bacon Avocado Burger,Double,12
+BU023,burger,Mushroom Swiss Burger,Single,10
+BU024,burger,Barbecue Bacon Burger,Double,14
+BU025,burger,Veggie Burger,Single,9
+BU026,burger,Turkey Burger,Single,10
+BU027,burger,Jalapeno Pepper Jack Burger,Single,10
+BU028,burger,Hawaiian Teriyaki Burger,Double,13
+BU029,burger,Blue Cheese Burger,Single,11
+BU030,burger,Black Bean Burger,Single,9
+BU031,burger,Southwest Chipotle Burger,Single,10
+BU032,burger,Sriracha Bacon Burger,Single,12
+BU033,burger,Portobello Mushroom Burger,Single,10
+BU034,burger,Philly Cheesesteak Burger,Single,12
+BU035,burger,Hawaiian BBQ Burger,Single,11
+BU036,burger,Breakfast Burger,Single,10
+BU037,burger,Buffalo Chicken Burger,Single,11
+BU038,burger,Greek Lamb Burger,Single,12
+BU039,burger,Double Bacon Cheeseburger,Double,14
+BU040,burger,Veggie Quesadilla Burger,Single,10
+SA041,salad,Caesar Salad,Regular,7
+SA042,salad,Greek Salad,Regular,8
+SA043,salad,Cobb Salad,Large,10
+SA044,salad,Chicken Caesar Salad,Regular,9
+SA045,salad,Caprese Salad,Regular,8
+SA046,salad,Waldorf Salad,Large,12
+SA047,salad,Asian Sesame Salad,Regular,8
+SA048,salad,Mediterranean Salad,Regular,9
+SA049,salad,Spinach Salad,Large,11
+SA050,salad,Taco Salad,Regular,10
+SA051,salad,Kale Caesar Salad,Regular,9
+SA052,salad,Beet and Goat Cheese Salad,Regular,8
+SA053,salad,Chicken Avocado Salad,Regular,10
+SA054,salad,Quinoa Salad,Large,12
+SA055,salad,Antipasto Salad,Regular,9
+SA056,salad,Thai Peanut Salad,Regular,10
+SA057,salad,Steakhouse Salad,Large,13
+SA058,salad,Waldorf Chicken Salad,Regular,11
+SA059,salad,Shrimp and Avocado Salad,Regular,12
+SA060,salad,Mediterranean Quinoa Salad,Regular,10

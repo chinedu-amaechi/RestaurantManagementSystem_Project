@@ -1,0 +1,82 @@
+﻿@page "/menu"
+@using RestaurantManagementSystem.Models
+@using System.Linq
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Left column -->
+            <div class="left-column">
+                <div class="search-form">
+                    <h3>Search Menu</h3>
+                    <!-- Search form content -->
+                    <div class="form-group">
+                        <label for="type">Type:</label>
+                        <select class="form-control" @bind="selectedType">
+                            <option value="">All Types</option>
+                            @foreach (var type in types)
+                            {
+                                <option value="@type">@type</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="size">Size:</label>
+                        <select class="form-control" @bind="selectedSize">
+                            <option value="">All Sizes</option>
+                            @foreach (var size in sizes)
+                            {
+                                <option value="@size">@size</option>
+                            }
+                        </select>
+                    </div>
+                    <button class="btn btn-primary custom-button search-button mt-3" @onclick="SearchMenu">Search Menu</button>
+                </div>
+                <div class="place-order mt-3">
+                    <!-- Place order section content -->
+                    @if (selectedMenuItem != null)
+                    {
+                        <hr>
+                        <h3>Place Order</h3>
+                        <div class="menu-item-card">
+                            <h4>Selected Item</h4>
+                            <h5>@selectedMenuItem.Description</h5>
+                            <p>Type: @selectedMenuItem.Type</p>
+                            <p>Size: @selectedMenuItem.Size</p>
+                            <p>Cost: $@selectedMenuItem.Cost</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerName">Customer Name:</label>
+                            <input type="text" class="form-control" @bind="customerName" />
+                        </div>
+                        <div class="form-group">
+                            <label for="customerEmail">Customer Email:</label>
+                            <input type="email" class="form-control" @bind="customerEmail" />
+                        </div>
+                        <button class="btn btn-primary custom-button mt-3" @onclick="PlaceOrder">Place Order</button>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <!-- Right column -->
+            <div class="right-column">
+                <h3>Search Results</h3>
+                <div class="row">
+                    @foreach (var menuItem in filteredMenuItems)
+                    {
+                        <div class="col-md-4">
+                            <div class="menu-item-card">
+                                <h6 class="font-weight-bold text-danger">@menuItem.Description</h6>
+                                <p>Type: @menuItem.Type</p>
+                                <p>Size: @menuItem.Size</p>
+                                <p>Cost: $@menuItem.Cost</p>
+                                <button class="btn btn-danger" @onclick="() => SelectMenuItem(menuItem)">Select</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,146 @@
+﻿@page "/order"
+@using RestaurantManagementSystem.Models
+@using RestaurantManagementSystem.Services
+
+<h3 class="mt-3 mb-4">Search Orders</h3>
+
+<div class="mb-3">
+    <label for="searchName" class="form-label">Search by Name:</label>
+    <input type="text" class="form-control" id="searchName" @bind="Name" />
+    <button class="btn btn-danger mt-2" @onclick="FilterOrders">Search</button>
+</div>
+
+@if (!string.IsNullOrWhiteSpace(Name) && FilteredOrders != null && FilteredOrders.Any())
+{
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Order ID</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Size</th>
+                <th>Cost</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in FilteredOrders)
+            {
+                <tr @onclick="() => SelectOrder(order)" class="@((SelectedOrder != null && SelectedOrder.Id == order.Id) ? "table-primary" : "")">
+                    <td>@order.Id</td>
+                    <td>@order.Type</td>
+                    <td>@order.Description</td>
+                    <td>@order.Size</td>
+                    <td>@order.Cost</td>
+                    <td>@order.Name</td>
+                    <td>@order.Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (SelectedOrder != null)
+    {
+        <button class="btn btn-danger" @onclick="DeleteSelectedOrder">Delete Order</button>
+    }
+}
+else if (!string.IsNullOrWhiteSpace(Name))
+{
+    <p>No orders found for "@Name".</p>
+}
+else
+{
+    <p>Enter a name and click 'Search' to find orders.</p>
+}
+
+@code {
+    public List<Order> Orders { get; set; }
+    public List<Order> FilteredOrders { get; set; }
+    public Order SelectedOrder { get; set; }
+    public string Name { get; set; }
+
+    protected override void OnInitialized()
+    {
+        LoadOrders();
+    }
+
+    private void LoadOrders()
+    {
+        Orders = new List<Order>();
+
+        try
+        {
+            string resDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/data");
+            string filename = "OrderList.txt";
+            string filepath = Path.Combine(resDirectory, filename);
+
+            string[] lines = File.ReadAllLines(filepath);
+            foreach (var line in lines)
+            {
+                var data = line.Split(',');
+                var order = new Order
+                (
+                    id: data[0],
+                    type: data[1],
+                    description: data[2],
+                    size: data[3],
+                    cost: double.Parse(data[4]),
+                    name: data[5],
+                    email: data[6]
+                );
+                Orders.Add(order);
+            }
+
+            FilteredOrders = Orders;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    private void FilterOrders()
+    {
+        if (!string.IsNullOrWhiteSpace(Name))
+        {
+            FilteredOrders = Orders.Where(o => o.Name.Contains(Name)).ToList();
+        }
+        else
+        {
+            FilteredOrders = Orders;
+        }
+    }
+
+    private void SelectOrder(Order order)
+    {
+        SelectedOrder = order;
+    }
+
+    private void DeleteSelectedOrder()
+    {
+        if (SelectedOrder != null)
+        {
+            Orders.Remove(SelectedOrder);
+
+            // Save updated orders to file
+            string resDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/data");
+            string filename = "OrderList.txt";
+            string filepath = Path.Combine(resDirectory, filename);
+
+            using (StreamWriter writer = new StreamWriter(filepath))
+            {
+                foreach (var order in Orders)
+                {
+                    writer.WriteLine($"{order.Id},{order.Type},{order.Description},{order.Size},{order.Cost},{order.Name},{order.Email}");
+                }
+            }
+
+            // Clear selection
+            SelectedOrder = null;
+
+            // Reload orders
+            LoadOrders();
+        }
+    }
+}
